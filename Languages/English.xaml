@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="From">From</system:String>
+    <system:String x:Key="To">To</system:String>    
+    <system:String x:Key="Subject">Subject</system:String>
+    <system:String x:Key="Body">Body</system:String>
+    <system:String x:Key="Password">Password</system:String>
+    <system:String x:Key="PickerToolTip">Select time to send the letter</system:String>
+    <system:String x:Key="FromToolTip">Enter here sender`s email adress(example:sample@mail.ru)</system:String>
+    <system:String x:Key="SubjectToolTip">Enter here subject of your email(will appear in "Subject" field of your letter)</system:String>
+    <system:String x:Key="Send">Send</system:String>
+    <system:String x:Key="BodyToolTip">Enter here your email`s  body</system:String>
+    <system:String x:Key="PasswordToolTip">Enter here password from sender`s email</system:String>
+    <system:String x:Key="ToToolTip">Enter here recipient`s email(example:sample@mail.ru)</system:String>
+    <system:String x:Key="SendToolTip">Clicking this button will launch timer(if it was set) or send email</system:String>
+</ResourceDictionary>
