@@ -32,7 +32,8 @@ namespace MvvmLight6.ViewModel
         /// Комманда включения таймера(биндиться кнопка в главном окне)
         /// </summary>
         public RelayCommand RunTimer { get; set; }
-
+        public RelayCommand ChangeLanguageToUkrainian { get; set; }
+        public RelayCommand ChangeLanguageToEnglish { get; set; }
         public MainViewModel(IDataService dataService)
         {
             _dataService = dataService;
@@ -51,6 +52,9 @@ namespace MvvmLight6.ViewModel
                     password = item.Password;
                     When = item.When;
                     RunTimer = new RelayCommand(Foo);
+                    ChangeLanguageToUkrainian = new RelayCommand(ChangeLanguageToUkr);
+                    ChangeLanguageToEnglish = new RelayCommand(ChangeLanguageToEngl);
+                    
                 });
         }  
         
@@ -165,6 +169,23 @@ namespace MvvmLight6.ViewModel
         private async void Foo()
         {
            await Timer();
+        }
+
+        /// <summary>
+        /// Меняет язык на укр
+        /// </summary>
+        private void ChangeLanguageToUkr()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new System.Uri(@"Languages\Ukrainian.xaml", System.UriKind.Relative);
+            App.Current.Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void ChangeLanguageToEngl()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new System.Uri(@"Languages\English.xaml", System.UriKind.Relative);
+            App.Current.Resources.MergedDictionaries.Add(dict);
         }
 
         /// <summary>

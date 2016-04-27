@@ -28,24 +28,9 @@ namespace MvvmLight6
         {
             this.ShowMessageAsync("Error", "Can`t send this email.Try again.");
         }
-
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Password = (sender as PasswordBox).Password;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-            dict.Source = new System.Uri(@"Languages\English.xaml", System.UriKind.Relative);
-            this.Resources.MergedDictionaries.Add(dict);
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-            dict.Source = new System.Uri(@"Languages\Ukrainian.xaml", System.UriKind.Relative);
-            this.Resources.MergedDictionaries.Add(dict);
         }
     }
 }

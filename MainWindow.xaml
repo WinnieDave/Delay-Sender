@@ -4,19 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="DelaySender"
         GlowBrush="{DynamicResource AccentColorBrush}"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Click="Button_Click">English
+            <Button Command="{Binding ChangeLanguageToEnglish}">English
                 <Button.ToolTip>
                     <TextBlock Text="Click to change language to English"/>
                 </Button.ToolTip>
             </Button>
-            <Button Click="Button_Click_1">Українська
+            <Button Command="{Binding ChangeLanguageToUkrainian}">Українська
                 <Button.ToolTip>
                     <TextBlock Text="Натисніть для зміни мови на Українську"/>
                 </Button.ToolTip>
@@ -76,7 +76,7 @@
                     <TextBlock Text="{DynamicResource PasswordToolTip}"/>
                 </PasswordBox.ToolTip>
             </PasswordBox>
-            <Button Command="{Binding RunTimer}" Grid.Row="5" Grid.Column="1" Margin="10" Grid.ColumnSpan="2">Send
+            <Button Command="{Binding RunTimer}" Grid.Row="5" Grid.Column="1" Margin="10" Content="{DynamicResource Send}" Grid.ColumnSpan="2">
                 <Button.ToolTip>
                     <TextBlock Text="{DynamicResource SendToolTip}"/>
                 </Button.ToolTip>
