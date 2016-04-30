@@ -1,0 +1,3 @@
+# Delay-Sender
+Simple email client which works with *@mail.ru adresses.Reborn.
+![Иллюстрация к проекту](https://github.com/WinnieDave/Delay-Sender/raw/Image/MainWindowImage.png)
