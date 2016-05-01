@@ -39,14 +39,6 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            <!--<StackPanel Grid.Row="0" Margin="10"  Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-                <TextBlock Text="{DynamicResource From}"/>
-                <TextBox Text="{Binding From}">
-                    <TextBox.ToolTip>
-                        <TextBlock Text="{DynamicResource FromToolTip}"/>
-                    </TextBox.ToolTip>
-                </TextBox>
-            </StackPanel>-->
             <StackPanel Grid.Row="1" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
                 <TextBlock Text="{DynamicResource To}"/>
             <TextBox Text="{Binding To}">
@@ -72,12 +64,6 @@
                 </TextBox>
             </StackPanel>
         <StackPanel Grid.Row="4" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <!--<TextBlock Text="{DynamicResource Password}"/>
-            <PasswordBox PasswordChanged="PasswordBox_PasswordChanged">
-                <PasswordBox.ToolTip>
-                    <TextBlock Text="{DynamicResource PasswordToolTip}"/>
-                </PasswordBox.ToolTip>
-            </PasswordBox>-->
             <Button Command="{Binding RunTimer}" Grid.Row="5" Grid.Column="1" Margin="10" Content="{DynamicResource Send}" Grid.ColumnSpan="2">
                 <Button.ToolTip>
                     <TextBlock Text="{DynamicResource SendToolTip}"/>
