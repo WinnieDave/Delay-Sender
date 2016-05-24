@@ -6,18 +6,18 @@
         xmlns:ignore="http://www.galasoft.ch/ignore"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="DelaySender"
+        Title="Delay Sender"
         GlowBrush="{DynamicResource AccentColorBrush}"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>  
             <TextBlock Text="{Binding From}"/>
+            <Button Click="Button_Click" Content="{DynamicResource Logout}"/>
             <Button Command="{Binding ChangeLanguageToEnglish}">English
                 <Button.ToolTip>
                     <TextBlock Text="Click to change language to English"/>
                 </Button.ToolTip>
-            </Button>
-
+            </Button>      
             <Button Command="{Binding ChangeLanguageToUkrainian}">Українська
                 <Button.ToolTip>
                     <TextBlock Text="Натисніть для зміни мови на Українську"/>
@@ -25,6 +25,9 @@
             </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
+    <Controls:MetroWindow.Resources>
+        <BooleanToVisibilityConverter x:Key="BtV"/>
+    </Controls:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -36,7 +39,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="1" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
@@ -62,21 +65,21 @@
                     <TextBlock Text="{DynamicResource BodyToolTip}"/>
                 </TextBox.ToolTip>
                 </TextBox>
+            <StackPanel  Orientation="Vertical">
+                <CheckBox Name="TimeChecker" Margin="0,10,0,5" Content="{DynamicResource TimeChecker}"></CheckBox>
+                <materialDesign:TimePicker Is24Hours="True" Margin="0,10,0,5" SelectedTime="{Binding When}" Visibility="{Binding IsChecked, ElementName=TimeChecker, Converter={StaticResource BtV}}"  Name="SendingTime">
+                    <materialDesign:TimePicker.ToolTip>
+                        <TextBlock Text="{DynamicResource PickerToolTip}"/>
+                    </materialDesign:TimePicker.ToolTip>
+                </materialDesign:TimePicker>
             </StackPanel>
+        </StackPanel>
         <StackPanel Grid.Row="4" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
             <Button Command="{Binding RunTimer}" Grid.Row="5" Grid.Column="1" Margin="10" Content="{DynamicResource Send}" Grid.ColumnSpan="2">
                 <Button.ToolTip>
                     <TextBlock Text="{DynamicResource SendToolTip}"/>
                 </Button.ToolTip>
             </Button>
-        </StackPanel>
-        <StackPanel Grid.RowSpan="6"  Orientation="Horizontal">
-            <materialDesign:TimePicker Is24Hours="True" SelectedTime="{Binding When}" Margin="10" Name="SendingTime">
-                <materialDesign:TimePicker.ToolTip>
-                    <TextBlock Text="{DynamicResource PickerToolTip}"/>
-                </materialDesign:TimePicker.ToolTip>
-            </materialDesign:TimePicker>
-            <Rectangle Margin="5"  Grid.Column="0" Width="6" Fill="{DynamicResource AccentColorBrush}"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

@@ -14,4 +14,7 @@
     <system:String x:Key="PasswordToolTip">Enter here password from sender`s email</system:String>
     <system:String x:Key="ToToolTip">Enter here recipient`s email(example:sample@mail.ru)</system:String>
     <system:String x:Key="SendToolTip">Clicking this button will launch timer(if it was set) or send email</system:String>
+    <system:String x:Key="Login">Login</system:String>
+    <system:String x:Key="Logout">Logout</system:String>
+    <system:String x:Key="TimeChecker">Send messge with delay</system:String>
 </ResourceDictionary>

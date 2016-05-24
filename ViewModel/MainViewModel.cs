@@ -77,7 +77,10 @@ namespace MvvmLight6.ViewModel
                 RaisePropertyChanged();
             }
         }
-
+        /// <summary>
+        /// Текущий язык прилаги
+        /// </summary>
+        public string CurrentLanguage { get; set; }
         /// <summary>
         /// Емайл отправителя
         /// </summary>
@@ -186,6 +189,7 @@ namespace MvvmLight6.ViewModel
             ResourceDictionary dict = new ResourceDictionary();
             dict.Source = new System.Uri(@"Languages\Ukrainian.xaml", System.UriKind.Relative);
             App.Current.Resources.MergedDictionaries.Add(dict);
+            CurrentLanguage = "ua";
         }
 
         private void ChangeLanguageToEngl()
@@ -193,6 +197,7 @@ namespace MvvmLight6.ViewModel
             ResourceDictionary dict = new ResourceDictionary();
             dict.Source = new System.Uri(@"Languages\English.xaml", System.UriKind.Relative);
             App.Current.Resources.MergedDictionaries.Add(dict);
+            CurrentLanguage = "en";
         }
         #endregion
         #region CommonFuctions
@@ -208,9 +213,12 @@ namespace MvvmLight6.ViewModel
         }
 
         /// <summary>
+        /// Меняет видимость тайм пикера
+        /// </summary>
+        /// <summary>
         /// Функция отправки письма
         /// </summary>
-        private void Send()
+        private async void Send()
         {    
             try
             {
@@ -223,7 +231,7 @@ namespace MvvmLight6.ViewModel
                 client.Port = 25;
                 client.EnableSsl = true;
                 client.Credentials = new System.Net.NetworkCredential(From, Password);
-                client.Send(mail);
+                await client.SendMailAsync(mail);
                 RaiseMessageSent();
             }
             catch (Exception e)

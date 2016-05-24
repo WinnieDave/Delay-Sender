@@ -31,12 +31,14 @@ namespace MvvmLight6
 
         void LoginWindow_LoggingFailed(object sender, EventArgs e)
         {
-            this.ShowMessageAsync("Error", "Logging failed");
+            if (ServiceLocator.Current.GetInstance<MainViewModel>().CurrentLanguage == "en")
+                this.ShowMessageAsync("Error", "Logging failed.");
+            else
+                this.ShowMessageAsync("Помилка", "Не вдалося увійти.Спробуйте ще раз.");
         }
 
         void LoginWindow_Logged(object sender, EventArgs e)
         {
-            this.ShowMessageAsync("OK", "Logged");
             var b = new MainWindow();  
             this.Close();
             b.Show();

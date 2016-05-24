@@ -3,7 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         DataContext="{Binding Main,Source={StaticResource Locator}}"
-        Title="LoginWindow" Height="300" Width="300">
+                      WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="Login Window" Height="300" Width="500">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Command="{Binding ChangeLanguageToEnglish}">English
+                <Button.ToolTip>
+                    <TextBlock Text="Click to change language to English"/>
+                </Button.ToolTip>
+            </Button>
+            <Button Command="{Binding ChangeLanguageToUkrainian}">Українська
+                <Button.ToolTip>
+                    <TextBlock Text="Натисніть для зміни мови на Українську"/>
+                </Button.ToolTip>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +32,7 @@
         <StackPanel Margin="10" Grid.Row="1" Orientation="Vertical">
             <TextBlock  Text="{DynamicResource Password}"/>
             <PasswordBox Margin="10" PasswordChanged="PasswordBox_PasswordChanged"/>
-            <Button Margin="5" Command="{Binding Login}" Content="Login"/>
+            <Button Margin="5" Command="{Binding Login}" Content="{DynamicResource Login}"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

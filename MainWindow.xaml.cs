@@ -21,16 +21,29 @@ namespace MvvmLight6
         }
         void MainWindow_MessageSent(object sender, System.EventArgs e)
         {
+           if(ServiceLocator.Current.GetInstance<MainViewModel>().CurrentLanguage=="en")
             this.ShowMessageAsync("Notification","Message sent");
+           else
+             this.ShowMessageAsync("Сповіщення", "Листа надіслано");
         }
 
         void MainWindow_MessageSendingFailed(object sender, System.EventArgs e)
         {
-            this.ShowMessageAsync("Error", "Can`t send this email.Try again.");
+            if (ServiceLocator.Current.GetInstance<MainViewModel>().CurrentLanguage == "en")
+                this.ShowMessageAsync("Error", "Can`t send this email.Try again.");
+            else
+                this.ShowMessageAsync("Помилка", "Не вдалося надіслати листа");
         }
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Password = (sender as PasswordBox).Password;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var b = new LoginWindow();
+            b.Show();
+            this.Close();
         }
     }
 }
