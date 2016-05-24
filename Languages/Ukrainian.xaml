@@ -17,4 +17,5 @@
     <system:String x:Key="Login">Увійти</system:String>
     <system:String x:Key="Logout">Вийти</system:String>
     <system:String x:Key="TimeChecker">Надіслати листа з затримкою</system:String>
+    <system:String x:Key="WrongEmail">Адреса повинна виглядати наступним чином: example@mail.ru</system:String>
 </ResourceDictionary>

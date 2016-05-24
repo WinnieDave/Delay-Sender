@@ -16,5 +16,6 @@
     <system:String x:Key="SendToolTip">Clicking this button will launch timer(if it was set) or send email</system:String>
     <system:String x:Key="Login">Login</system:String>
     <system:String x:Key="Logout">Logout</system:String>
-    <system:String x:Key="TimeChecker">Send messge with delay</system:String>
+    <system:String x:Key="TimeChecker">Send message with delay</system:String>
+    <system:String x:Key="WrongEmail">Email must match this pattern: example@mail.ru</system:String>
 </ResourceDictionary>

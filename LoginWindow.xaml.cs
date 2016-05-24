@@ -37,8 +37,13 @@ namespace MvvmLight6
                 this.ShowMessageAsync("Помилка", "Не вдалося увійти.Спробуйте ще раз.");
         }
 
-        void LoginWindow_Logged(object sender, EventArgs e)
+         async void LoginWindow_Logged(object sender, EventArgs e)
         {
+            if (ServiceLocator.Current.GetInstance<MainViewModel>().CurrentLanguage == "en")
+                await this.ShowMessageAsync("Message", String.Format("Logged into {0}",
+                    ServiceLocator.Current.GetInstance<MainViewModel>().From));
+            else
+              await  this.ShowMessageAsync("Сповіщення", String.Format("Виконано вхід у аккаунт {0}",ServiceLocator.Current.GetInstance<MainViewModel>().From));
             var b = new MainWindow();  
             this.Close();
             b.Show();

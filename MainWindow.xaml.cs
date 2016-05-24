@@ -39,11 +39,25 @@ namespace MvvmLight6
             ServiceLocator.Current.GetInstance<MainViewModel>().Password = (sender as PasswordBox).Password;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var b = new LoginWindow();
-            b.Show();
-            this.Close();
+            if(ServiceLocator.Current.GetInstance<MainViewModel>().CurrentLanguage=="en")
+            {
+              var result= await this.ShowMessageAsync("Notification","Are you sure you want to log out?",MessageDialogStyle.AffirmativeAndNegative);
+                if(result==MessageDialogResult.Affirmative)
+                {
+                    var b = new LoginWindow();
+                    b.Show();
+                    this.Close();
+                }
+            }
+            var result1 = await this.ShowMessageAsync("Сповіщення", "Ви точно хочете вийти з аккаунту?", MessageDialogStyle.AffirmativeAndNegative);
+            if (result1 == MessageDialogResult.Affirmative)
+            {
+                var b = new LoginWindow();
+                b.Show();
+                this.Close();
+            }
         }
     }
 }

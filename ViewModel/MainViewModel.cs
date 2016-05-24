@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using ImapX;
 using ImapX.Authentication;
+using System.Threading;
 namespace MvvmLight6.ViewModel
 {
     /// <summary>
@@ -240,7 +241,7 @@ namespace MvvmLight6.ViewModel
                 RaiseMessageSendingFailed();
             }
         }
-        private void tryLogin()
+        private  void tryLogin()
         {
             var cl = new ImapClient("imap.mail.ru",true,false);
             cl.Host = "imap.mail.ru";

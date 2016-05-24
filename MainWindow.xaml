@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:conv="clr-namespace:MvvmLight6.Converters"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Delay Sender"
         GlowBrush="{DynamicResource AccentColorBrush}"
@@ -27,6 +28,7 @@
     </Controls:MetroWindow.RightWindowCommands>
     <Controls:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BtV"/>
+        <conv:StringFormatToVisibilityConverter x:Key="StV"/>
     </Controls:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -49,7 +51,8 @@
                     <TextBlock Text="{DynamicResource ToToolTip}"/>
                 </TextBox.ToolTip>
             </TextBox>
-            </StackPanel>
+            <TextBlock Text="{DynamicResource WrongEmail}" Foreground="Red" Visibility="{Binding From,Converter={StaticResource StV},NotifyOnTargetUpdated=True}"/>
+        </StackPanel>
             <StackPanel Grid.Row="2" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
                 <TextBlock Text="{DynamicResource Subject}"/>
                 <TextBox Text="{Binding Subject}">
