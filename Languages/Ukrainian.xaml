@@ -14,4 +14,8 @@
     <system:String x:Key="PasswordToolTip">Введіть пароль,що використовується для входу в поштову скриньку</system:String>
     <system:String x:Key="ToToolTip">Адреса отримувача листа(наприклад,jane@mail.ru)</system:String>
     <system:String x:Key="SendToolTip">Натисніть для запуску таймера(якщо встановлений) або надсилання листа</system:String>
+    <system:String x:Key="Login">Увійти</system:String>
+    <system:String x:Key="Logout">Вийти</system:String>
+    <system:String x:Key="TimeChecker">Надіслати листа з затримкою</system:String>
+    <system:String x:Key="WrongEmail">Адреса повинна виглядати наступним чином: example@mail.ru</system:String>
 </ResourceDictionary>

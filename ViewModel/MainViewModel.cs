@@ -5,7 +5,9 @@ using System;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Windows;
-
+using ImapX;
+using ImapX.Authentication;
+using System.Threading;
 namespace MvvmLight6.ViewModel
 {
     /// <summary>
@@ -17,23 +19,27 @@ namespace MvvmLight6.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly IDataService _dataService;
-
+        #region Fields
         private string from;
         private string to;
         private string subject;
         private string body;
         private string password;
-        private DateTime when;   
- 
+        private DateTime when;
+        #endregion
+        #region Events
         //ивенты для сообщения о результате отправки письма(возбуждалки внизу)
         public event EventHandler MessageSent;
         public event EventHandler MessageSendingFailed;
-        /// <summary>
-        /// Комманда включения таймера(биндиться кнопка в главном окне)
-        /// </summary>
+        public event EventHandler Logged;
+        public event EventHandler LoggingFailed;
+        #endregion
+        #region Commands
         public RelayCommand RunTimer { get; set; }
         public RelayCommand ChangeLanguageToUkrainian { get; set; }
         public RelayCommand ChangeLanguageToEnglish { get; set; }
+        public RelayCommand Login { get; set; }
+        #endregion
         public MainViewModel(IDataService dataService)
         {
             _dataService = dataService;
@@ -54,12 +60,10 @@ namespace MvvmLight6.ViewModel
                     RunTimer = new RelayCommand(Foo);
                     ChangeLanguageToUkrainian = new RelayCommand(ChangeLanguageToUkr);
                     ChangeLanguageToEnglish = new RelayCommand(ChangeLanguageToEngl);
-                    
+                    Login = new RelayCommand(tryLogin);
                 });
-        }  
-        
-
-
+        }
+        #region Properties
         /// <summary>
         /// Время отправки письма
         /// </summary>
@@ -74,7 +78,10 @@ namespace MvvmLight6.ViewModel
                 RaisePropertyChanged();
             }
         }
-
+        /// <summary>
+        /// Текущий язык прилаги
+        /// </summary>
+        public string CurrentLanguage { get; set; }
         /// <summary>
         /// Емайл отправителя
         /// </summary>
@@ -149,8 +156,8 @@ namespace MvvmLight6.ViewModel
                 RaisePropertyChanged();
             }
         }
-
-
+        #endregion
+        #region EventRaisers
         //Возбуждалки для событий отправки/фейла письма
         protected virtual void RaiseMessageSendingFailed()
         {
@@ -162,23 +169,28 @@ namespace MvvmLight6.ViewModel
             if (MessageSent != null)
                 MessageSent(this, EventArgs.Empty);
         }
-
-        /// <summary>
-        /// Костыль,чтобы запихнуть таймер в RelayCommand
-        /// </summary>
+        protected virtual void RaiseLogged()
+        {
+            if (Logged != null)
+                Logged(this, EventArgs.Empty);
+        }
+        protected virtual void RaiseLoggingFailed()
+        {
+            if (LoggingFailed != null)
+                LoggingFailed(this, EventArgs.Empty);
+        }
+        #endregion
         private async void Foo()
         {
            await Timer();
         }
-
-        /// <summary>
-        /// Меняет язык на укр
-        /// </summary>
+        #region LanguageFunctions
         private void ChangeLanguageToUkr()
         {
             ResourceDictionary dict = new ResourceDictionary();
             dict.Source = new System.Uri(@"Languages\Ukrainian.xaml", System.UriKind.Relative);
             App.Current.Resources.MergedDictionaries.Add(dict);
+            CurrentLanguage = "ua";
         }
 
         private void ChangeLanguageToEngl()
@@ -186,8 +198,10 @@ namespace MvvmLight6.ViewModel
             ResourceDictionary dict = new ResourceDictionary();
             dict.Source = new System.Uri(@"Languages\English.xaml", System.UriKind.Relative);
             App.Current.Resources.MergedDictionaries.Add(dict);
+            CurrentLanguage = "en";
         }
-
+        #endregion
+        #region CommonFuctions
         /// <summary>
         /// Таймер
         /// </summary>
@@ -200,14 +214,17 @@ namespace MvvmLight6.ViewModel
         }
 
         /// <summary>
+        /// Меняет видимость тайм пикера
+        /// </summary>
+        /// <summary>
         /// Функция отправки письма
         /// </summary>
-        private void Send()
+        private async void Send()
         {    
             try
             {
                 var mail = new MailMessage();
-                mail.From = new MailAddress(From);
+                mail.From = new System.Net.Mail.MailAddress(From);
                 mail.To.Add(To);
                 mail.Subject = Subject;
                 mail.Body = Body;
@@ -215,7 +232,7 @@ namespace MvvmLight6.ViewModel
                 client.Port = 25;
                 client.EnableSsl = true;
                 client.Credentials = new System.Net.NetworkCredential(From, Password);
-                client.Send(mail);
+                await client.SendMailAsync(mail);
                 RaiseMessageSent();
             }
             catch (Exception e)
@@ -224,7 +241,23 @@ namespace MvvmLight6.ViewModel
                 RaiseMessageSendingFailed();
             }
         }
-
+        private  void tryLogin()
+        {
+            var cl = new ImapClient("imap.mail.ru",true,false);
+            cl.Host = "imap.mail.ru";
+            if (cl.Connect())
+            {
+                if (cl.Login(From, Password))
+                {
+                    RaiseLogged();
+                    return;
+                }
+                RaiseLoggingFailed();
+                return;
+            }
+            RaiseLoggingFailed();
+        }
+        #endregion
         public override void Cleanup()
         {
             // Clean up if needed
