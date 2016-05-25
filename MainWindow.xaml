@@ -63,7 +63,7 @@
             </StackPanel>
             <StackPanel Grid.Row="3" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
                 <TextBlock Text="{DynamicResource Body}"/>
-                <TextBox Text="{Binding Body}">
+                <TextBox AcceptsReturn="True" Text="{Binding Body}">
                 <TextBox.ToolTip>
                     <TextBlock Text="{DynamicResource BodyToolTip}"/>
                 </TextBox.ToolTip>
