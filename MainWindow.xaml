@@ -78,7 +78,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="4" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <Button Command="{Binding RunTimer}" Grid.Row="5" Grid.Column="1" Margin="10" Content="{DynamicResource Send}" Grid.ColumnSpan="2">
+            <Button Command="{Binding RunTimer}" Background="{DynamicResource AccentColorBrush}" Grid.Row="5" Grid.Column="1" Margin="10" Content="{DynamicResource Send}" Grid.ColumnSpan="2">
                 <Button.ToolTip>
                     <TextBlock Text="{DynamicResource SendToolTip}"/>
                 </Button.ToolTip>

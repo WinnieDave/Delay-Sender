@@ -37,7 +37,7 @@
         <StackPanel Margin="10" Grid.Row="1" Orientation="Vertical">
             <TextBlock  Text="{DynamicResource Password}"/>
             <PasswordBox Margin="10" PasswordChanged="PasswordBox_PasswordChanged"/>
-            <Button Margin="5" Command="{Binding Login}" Content="{DynamicResource Login}"/>
+            <Button Margin="5" Command="{Binding Login}" Background="{DynamicResource AccentColorBrush}" Content="{DynamicResource Login}"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

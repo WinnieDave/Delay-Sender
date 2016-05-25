@@ -237,7 +237,6 @@ namespace MvvmLight6.ViewModel
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.StackTrace);
                 RaiseMessageSendingFailed();
             }
         }
@@ -245,17 +244,24 @@ namespace MvvmLight6.ViewModel
         {
             var cl = new ImapClient("imap.mail.ru",true,false);
             cl.Host = "imap.mail.ru";
-            if (cl.Connect())
+            try
             {
-                if (cl.Login(From, Password))
+                if (cl.Connect())
                 {
-                    RaiseLogged();
+                    if (cl.Login(From, Password))
+                    {
+                        RaiseLogged();
+                        return;
+                    }
+                    RaiseLoggingFailed();
                     return;
-                }
+                } 
                 RaiseLoggingFailed();
-                return;
             }
-            RaiseLoggingFailed();
+            catch(Exception)
+            {
+                RaiseLoggingFailed();
+            }
         }
         #endregion
         public override void Cleanup()
