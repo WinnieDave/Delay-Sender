@@ -8,14 +8,14 @@
     <system:String x:Key="Send">Надіслати</system:String>
     <system:String x:Key="Password">Пароль відправника</system:String>
     <system:String x:Key="PickerToolTip">Виберіть час для надсилання листа</system:String>
-    <system:String x:Key="FromToolTip">Адреса надсилача листа(наприклад,ben@mail.ru)</system:String>
+    <system:String x:Key="FromToolTip">Адреса надсилача листа(наприклад,ben@ukr.net)</system:String>
     <system:String x:Key="SubjectToolTip">Тема листа(з`явиться у полі "Тема" при отриманні листа)</system:String>
     <system:String x:Key="BodyToolTip">Введіть сам лист(текст листа)</system:String>
     <system:String x:Key="PasswordToolTip">Введіть пароль,що використовується для входу в поштову скриньку</system:String>
-    <system:String x:Key="ToToolTip">Адреса отримувача листа(наприклад,jane@mail.ru)</system:String>
+    <system:String x:Key="ToToolTip">Адреса отримувача листа(наприклад,jane@ukr.net)</system:String>
     <system:String x:Key="SendToolTip">Натисніть для запуску таймера(якщо встановлений) або надсилання листа</system:String>
     <system:String x:Key="Login">Увійти</system:String>
     <system:String x:Key="Logout">Вийти</system:String>
     <system:String x:Key="TimeChecker">Надіслати листа з затримкою</system:String>
-    <system:String x:Key="WrongEmail">Адреса повинна виглядати наступним чином: example@mail.ru</system:String>
+    <system:String x:Key="WrongEmail">Адреса повинна виглядати наступним чином: example@ukr.net</system:String>
 </ResourceDictionary>

@@ -12,7 +12,7 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>  
-            <TextBlock Text="{Binding From}"/>
+            <TextBlock Text="{Binding From}" VerticalAlignment="Center"/>
             <Button Click="Button_Click" Content="{DynamicResource Logout}"/>
             <Button Command="{Binding ChangeLanguageToEnglish}">English
                 <Button.ToolTip>

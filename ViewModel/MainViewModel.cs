@@ -228,8 +228,8 @@ namespace MvvmLight6.ViewModel
                 mail.To.Add(To);
                 mail.Subject = Subject;
                 mail.Body = Body;
-                var client = new SmtpClient("smtp.mail.ru");
-                client.Port = 25;
+                var client = new SmtpClient("smtp.ukr.net");
+                client.Port = 465;
                 client.EnableSsl = true;
                 client.Credentials = new System.Net.NetworkCredential(From, Password);
                 await client.SendMailAsync(mail);
@@ -242,13 +242,14 @@ namespace MvvmLight6.ViewModel
         }
         private  void tryLogin()
         {
-            var cl = new ImapClient("imap.mail.ru",true,false);
-            cl.Host = "imap.mail.ru";
+            var cl = new ImapClient("imap.ukr.net",true,false);
+            cl.Host = "imap.ukr.net";
+            cl.Port = 993;
             try
             {
                 if (cl.Connect())
                 {
-                    if (cl.Login(From, Password))
+                    if (!cl.Login(From, Password))
                     {
                         RaiseLogged();
                         return;
