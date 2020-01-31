@@ -1,10 +1,10 @@
 # Delay-Sender
-Simple smtp email client which works with *@mail.ru addresses. Translated into two languages(Ukrainian and English). 
+Simple smtp email client which works with *@ukr.net addresses. Translated into two languages(Ukrainian and English). 
 
-![ Login Window][/login.png]
+![ Login Window](https://ibb.co/8sSdV7H)
 
-![Successful login][/succ_login.png] 
+![Successful login](https://ibb.co/1Tg9q9S)
 
-![Main Window with Timer Settings][/main.png] 
+![Main Window with Timer Settings](https://ibb.co/YLt7zFr) 
 
 
