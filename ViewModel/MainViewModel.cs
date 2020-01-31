@@ -249,7 +249,7 @@ namespace MvvmLight6.ViewModel
             {
                 if (cl.Connect())
                 {
-                    if (!cl.Login(From, Password))
+                    if (cl.Login(From, Password))
                     {
                         RaiseLogged();
                         return;
